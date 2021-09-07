@@ -1,12 +1,14 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import { useUser } from '../../firebase/useUser'
 const WriteToCloudFirestore = () => {
+  const { user } = useUser()
   const sendData = () => {
     try {
       firebase
         .firestore()
         .collection('myCollection')
-        .doc('my_document')
+        .doc(user.id)
         .set({
           stringExample: 'Deepanki Jain',
           booleanExample: true,
